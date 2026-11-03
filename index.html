@@ -121,5 +121,23 @@
     </div>
   </footer>
 
+  <script>
+    // Resalta "Recetas" en el menú mientras la sección de recetas está en pantalla
+    const enlaceInicio = document.querySelector('.menu a[href="index.html"]');
+    const enlaceRecetas = document.querySelector('.menu a[href="index.html#recetas"]');
+    const seccionRecetas = document.getElementById('recetas');
+
+    function marcarMenu() {
+      const caja = seccionRecetas.getBoundingClientRect();
+      const enRecetas = caja.top <= 120 && caja.bottom > 120;
+      enlaceInicio.classList.toggle('activo', !enRecetas);
+      enlaceRecetas.classList.toggle('activo', enRecetas);
+    }
+
+    window.addEventListener('scroll', marcarMenu, { passive: true });
+    window.addEventListener('scrollend', marcarMenu);
+    marcarMenu();
+  </script>
+
 </body>
 </html>
